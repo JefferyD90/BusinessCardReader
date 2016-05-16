@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="BusinessCardReader.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BusinessCardReader"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Business Card Reader"
+                       Margin="4"
+                       FontSize="28"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Front or Rear Camera"
+                       Margin="4"
+                       HorizontalAlignment="Center" />
+            <ListView x:Name="CameraSelectionList"
+                      Margin="4"
+                      Width="240"
+                      MaxHeight="200"
+                      SelectionChanged="CameraSelectionList_SelectionChanged"
+                      HorizontalAlignment="Center" />
+            <TextBlock Text="Camera Preview"
+                       Margin="4"
+                       HorizontalAlignment="Center" />
+
+            <Border Background="LightSlateGray">
+                <CaptureElement x:Name="PreviewElement"
+                                Width="240"
+                                Height="240" />
+            </Border>
+            <Button x:Name="TakePhotoButton"
+                    Click="TakePhotoButton_ClickAsync"
+                    IsEnabled="False"
+                    Margin="5"
+                    Width="240"
+                    HorizontalAlignment="Center"
+                    Content="Take Photo" />
+            <TextBlock Text="Captured Images"
+                       HorizontalAlignment="Center" />
+            
+            <Image x:Name="ImageElement"
+                   Width="240"
+                   Height="240" />
+            <Button x:Name="GetDetailsButton"
+                    Click="GetDetailsButton_ClickAsync"
+                    Margin="4"
+                    Width="240"
+                    Content="Get Details" />
+            <TextBlock x:Name="GetDetailsErrorTextBlock"
+                       Foreground="Red"
+                       HorizontalAlignment="Center" />
+
+        </StackPanel>
+
+    </Grid>
+</Page>
