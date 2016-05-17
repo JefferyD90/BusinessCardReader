@@ -41,8 +41,10 @@ namespace BusinessCardReader
 
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //searches for video devices
             _allVideoDevices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
             if (_allVideoDevices == null || !_allVideoDevices.Any())
+                //Provides error in case of no devices
             {
                 Debug.WriteLine("No devices found.");
                 return;
@@ -55,7 +57,7 @@ namespace BusinessCardReader
                 }
             }
         }
-
+        //provides options in camera selection list
         private async void CameraSelectionList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedCameraItem = e.AddedItems.FirstOrDefault().ToString();
@@ -69,6 +71,7 @@ namespace BusinessCardReader
             }
 
         }
+        //provides button click function
         private async void TakePhotoButton_ClickAsync(object sender, RoutedEventArgs e)
         {
             try
@@ -89,7 +92,7 @@ namespace BusinessCardReader
                 TakePhotoButton.IsEnabled = true;
             }
         }
-
+        //provides button click function
         private async void GetDetailsButton_ClickAsync(object sender, RoutedEventArgs e)
         {
             GetDetailsErrorTextBlock.Text = string.Empty;
@@ -115,7 +118,8 @@ namespace BusinessCardReader
             }
         }
 
-        #region Methods affecting camera
+        #region //Methods affecting camera
+        //turns on video device prepares for capture
         private async Task StartDeviceAsync()
         {
             if (_desiredDevice != null)
@@ -144,6 +148,7 @@ namespace BusinessCardReader
                 }
             }
         }
+        //allows preview window
         private async Task StartPreviewAsync()
         {
             try
@@ -161,7 +166,9 @@ namespace BusinessCardReader
             }
         }
         #endregion
-        #region Helper Methods
+
+        #region //Helper Methods
+        //provides bitmap image
         private async Task<BitmapImage> OpenImageAsBitmapAsync(StorageFile file)
         {
             IRandomAccessStreamWithContentType stream = await file.OpenReadAsync();
@@ -169,6 +176,7 @@ namespace BusinessCardReader
             bmpImg.SetSource(stream);
             return bmpImg;
         }
+
         private static Rect GetElementRect(FrameworkElement element)
         {
             GeneralTransform transform = element.TransformToVisual(null);
@@ -176,7 +184,9 @@ namespace BusinessCardReader
             return new Rect(point, new Size(element.ActualWidth, element.ActualHeight));
         }
         #endregion
-        #region OCR_Methods
+
+        #region //OCR_Methods
+        //Matches data from bitmap to contact info
         private void ApplyPatternMatching(OcrResult ocrResult)
         {
             Contact contact = new Contact();
@@ -243,5 +253,6 @@ namespace BusinessCardReader
             }
         }
         #endregion
+
     }
 }

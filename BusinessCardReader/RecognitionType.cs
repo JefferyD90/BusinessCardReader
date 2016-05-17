@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessCardReader
 {
+    //creates vars for each type
     public enum RecognitionType
     {
         Other,

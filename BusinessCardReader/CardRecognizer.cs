@@ -9,6 +9,7 @@ namespace BusinessCardReader
 {
     public static class CardRecognizer
     {
+        //alg for determining information...  all pulled from MSDN
         static Dictionary<RecognitionType, string> expressions = new Dictionary<RecognitionType, string>()
     {
             // regex taken from MSDN: http://msdn.microsoft.com/en-us/library/01escwtf(v=vs.110).aspx  
